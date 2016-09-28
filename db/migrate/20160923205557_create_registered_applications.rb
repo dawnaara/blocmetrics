@@ -3,6 +3,7 @@ class CreateRegisteredApplications < ActiveRecord::Migration
     create_table :registered_applications do |t|
       t.string :name
       t.string :url
+      t.references :user, index: true
 
       t.timestamps null: false
     end

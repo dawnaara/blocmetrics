@@ -2,9 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: [:show] do 
-  	resources :registered_applications
-  end
+  resources :users, only: [:show] 
+  resources :registered_applications
 
   get 'welcome/index'
 

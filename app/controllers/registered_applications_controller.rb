@@ -1,8 +1,7 @@
 class RegisteredApplicationsController < ApplicationController
-  before_action :set_registered_application
+  before_action :set_registered_application, except: [:index, :new, :create]
   def index
-    @users = User.all
-    @registered_application = RegisteredApplication.all
+    @registered_applications = RegisteredApplication.all
   end  
 
   def new
@@ -11,16 +10,48 @@ class RegisteredApplicationsController < ApplicationController
 
   def create
     @registered_application = current_user.registered_applications.new(registered_application_params)
+
+    if @registered_application.save
+      flash[:notice] = "Saved"
+      redirect_to registered_applications_path
+    else
+      flash[:warning] = "not saved"
+      render :new
+    end
+
+    # respond_to do |format|
+    #   if @registered_application.save
+    #     format.html { redirect_to @registered_application, notice: 'Application was successfully created.' }
+    #     format.json { render :show, status: :created, location: @registered_application }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @registered_application.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def edit
   end
 
   def update
+    if @registered_application.update_attributes(registered_application_params)
+      # flash good
+      redirect_to registered_applications_path
+    else 
+      # flash bad
+      render :edit
+    end
   end
 
   def destroy
-    @registered_application.destroy
+    if @registered_application.destroy
+      flash[:notice] = "Application was destroyed successfully."
+      redirect_to registered_applications_path
+
+    else
+      flash[:alert] = "There was an error deleting your application."
+      redirect_to registered_applications_path
+    end
   end
 
   private

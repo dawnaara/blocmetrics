@@ -1,6 +1,11 @@
 <div class="jumbotron">
 	<h1>Registered Applications Index</h1>
-	<p>Index page for the users registered applications.</p>
 </div>
 
-<%= render 'form' %>
+<table class="table">
+	<%= render @registered_applications %>
+</table>
+
+<p>
+<%= link_to "Create New Registered Application", new_registered_application_path, class: "btn btn-success" %>
+</p>
