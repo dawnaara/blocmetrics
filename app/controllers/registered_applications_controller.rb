@@ -54,6 +54,10 @@ class RegisteredApplicationsController < ApplicationController
     end
   end
 
+  def show
+     @events = @registered_application.events.group_by(&:name)
+  end
+
   private
     def set_registered_application
       @registered_application = RegisteredApplication.find(params[:id])
