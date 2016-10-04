@@ -2,7 +2,6 @@ require 'faker'
 
 	10.times do 
 		User.create!(
-		name: Faker::Name.name,
 		email: Faker::Internet.email,
 		password: Faker::Internet.password(6), 
 		confirmed_at: Time.now		
@@ -23,7 +22,7 @@ require 'faker'
 
 	100.times do
 		Event.create!(
-			name: Faker::Pokemon.name 
+			name: Faker::Pokemon.name,
 			registered_application: registered_applications.sample
 			)
 	end

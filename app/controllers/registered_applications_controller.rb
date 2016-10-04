@@ -18,16 +18,6 @@ class RegisteredApplicationsController < ApplicationController
       flash[:warning] = "not saved"
       render :new
     end
-
-    # respond_to do |format|
-    #   if @registered_application.save
-    #     format.html { redirect_to @registered_application, notice: 'Application was successfully created.' }
-    #     format.json { render :show, status: :created, location: @registered_application }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @registered_application.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def edit
@@ -66,5 +56,4 @@ class RegisteredApplicationsController < ApplicationController
     def registered_application_params
       params.require(:registered_application).permit(:name, :url)
     end
-
 end
