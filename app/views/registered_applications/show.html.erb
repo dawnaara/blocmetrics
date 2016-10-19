@@ -1,2 +1,8 @@
 
 <h1>Events for <%= @registered_application.name %></h1>
+
+<%= pie_chart @registered_application.events.group(:name).count %>
+
+<% if Rails.env.production? %>
+	<%= line_chart @registered_application.events.group_by_day(:created_at).count %>
+<% end %>

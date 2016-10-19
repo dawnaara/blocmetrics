@@ -16,6 +16,7 @@ gem 'pry'
 gem 'devise', '~> 4.2'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem "chartkick"
 
  group :production do
    gem 'rails_12factor', '~> 0.0.3'
